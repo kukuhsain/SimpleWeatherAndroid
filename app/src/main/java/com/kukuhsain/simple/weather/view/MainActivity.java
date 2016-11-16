@@ -1,5 +1,6 @@
 package com.kukuhsain.simple.weather.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +17,8 @@ import butterknife.OnClick;
  */
 
 public class MainActivity extends AppCompatActivity {
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,5 +41,21 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btn_current_location)
     public void useCurrentLocation() {
         startActivity(new Intent(this, WeatherListActivity.class));
+    }
+
+    private void showLoading() {
+        if (progressDialog != null) {
+            progressDialog.show();
+        } else {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Please wait...");
+            progressDialog.show();
+        }
+    }
+
+    private void dismissLoading() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
     }
 }
