@@ -54,21 +54,21 @@ public class WeatherListActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        adapter = new WeatherAdapter(getDummySamples());
+        adapter = new WeatherAdapter(getDummyWeathers());
         rvSamples.setAdapter(adapter);
     }
 
-    private List<Weather> getDummySamples() {
-        List<Weather> weathers = new ArrayList<>();
+    private List<Weather> getDummyWeathers() {
+        List<Weather> weathers = new ArrayList<Weather>();
         int total = 10;
         for (int i=0; i<total; i++) {
-            weathers.add(new Weather(i, "Weather title "+i, "Weather description, Lorem ipsum "+i));
+            weathers.add(new Weather(i, "Weather "+i, "Weather description "+i, "None"));
         }
         return weathers;
     }
 
     public void onItemClicked(Weather weather) {
-        Toast.makeText(this, weather.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, weather.getMain(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

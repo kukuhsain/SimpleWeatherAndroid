@@ -56,7 +56,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
         }
 
         public void bind(Context context, Weather weather) {
-            tvName.setText(weather.getName());
+            tvName.setText(weather.getMain());
             tvDescription.setText(weather.getDescription());
             itemView.setOnClickListener(view -> {
                 ((WeatherListActivity) context).onItemClicked(weather);
