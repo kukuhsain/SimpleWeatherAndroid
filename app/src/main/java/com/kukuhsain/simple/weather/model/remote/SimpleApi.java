@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class SimpleApi {
-    public static final String BASE_URL = "http://simple-tour.appspot.com";
+    public static final String BASE_URL = "http://api.openweathermap.org";
     private static SimpleApi INSTANCE;
     private ApiEndpoint api;
     private static String accessToken;
