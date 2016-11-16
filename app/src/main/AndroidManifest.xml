@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.SampleActivity"
+        <activity android:name=".view.WeatherListActivity"
             android:screenOrientation="portrait" />
 
     </application>

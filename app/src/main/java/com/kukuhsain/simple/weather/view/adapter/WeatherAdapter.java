@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.kukuhsain.simple.weather.R;
 import com.kukuhsain.simple.weather.model.pojo.Sample;
-import com.kukuhsain.simple.weather.view.SampleActivity;
+import com.kukuhsain.simple.weather.view.WeatherListActivity;
 
 import java.util.List;
 
@@ -20,18 +20,18 @@ import butterknife.ButterKnife;
  * Created by kukuh on 14/11/16.
  */
 
-public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder> {
+public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
     private Context context;
     private List<Sample> samples;
 
-    public SampleAdapter(List<Sample> samples) {
+    public WeatherAdapter(List<Sample> samples) {
         this.samples = samples;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sample, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_weather, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -59,7 +59,7 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
             tvName.setText(sample.getName());
             tvDescription.setText(sample.getDescription());
             itemView.setOnClickListener(view -> {
-                ((SampleActivity) context).onItemClicked(sample);
+                ((WeatherListActivity) context).onItemClicked(sample);
             });
         }
     }

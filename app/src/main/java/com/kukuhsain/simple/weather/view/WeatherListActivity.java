@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.kukuhsain.simple.weather.R;
 import com.kukuhsain.simple.weather.model.local.PreferencesHelper;
 import com.kukuhsain.simple.weather.model.pojo.Sample;
-import com.kukuhsain.simple.weather.view.adapter.SampleAdapter;
+import com.kukuhsain.simple.weather.view.adapter.WeatherAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,19 +28,19 @@ import butterknife.ButterKnife;
  * Created by kukuh on 14/11/16.
  */
 
-public class SampleActivity extends AppCompatActivity {
+public class WeatherListActivity extends AppCompatActivity {
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.rv_samples) RecyclerView rvSamples;
 
     private ProgressDialog progressDialog;
     private ActionBar actionBar;
     private RecyclerView.LayoutManager layoutManager;
-    private SampleAdapter adapter;
+    private WeatherAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sample);
+        setContentView(R.layout.activity_weather);
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
@@ -54,7 +54,7 @@ public class SampleActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        adapter = new SampleAdapter(getDummySamples());
+        adapter = new WeatherAdapter(getDummySamples());
         rvSamples.setAdapter(adapter);
     }
 
