@@ -1,6 +1,6 @@
 package com.kukuhsain.simple.weather.model.local;
 
-import com.kukuhsain.simple.weather.model.pojo.Sample;
+import com.kukuhsain.simple.weather.model.pojo.Weather;
 
 import java.util.List;
 
@@ -23,41 +23,41 @@ public class RealmHelper {
         return INSTANCE;
     }
 
-    public void addSample(Sample sample) {
-        List<Sample> samples = getAllSamples();
+    public void addWeather(Weather weather) {
+        List<Weather> weathers = getAllWeathers();
         boolean isExisted = false;
-        for (Sample sample1 : samples) {
-            if (sample.getSampleId() == sample1.getSampleId()) {
+        for (Weather weather1 : weathers) {
+            if (weather.getSampleId() == weather1.getSampleId()) {
                 isExisted = true;
             }
         }
         if (!isExisted) {
             Realm.getDefaultInstance().executeTransaction(realm -> {
-                realm.copyToRealm(sample);
+                realm.copyToRealm(weather);
             });
         }
     }
 
-    public void addSamples(List<Sample> samples) {
-        List<Sample> realmSamples = getAllSamples();
-        for (Sample sample : samples) {
+    public void addWeathers(List<Weather> weathers) {
+        List<Weather> realmWeathers = getAllWeathers();
+        for (Weather weather : weathers) {
             boolean isExisted = false;
-            for (Sample realmSample : realmSamples) {
-                if (realmSample.getSampleId() == sample.getSampleId()) {
+            for (Weather realmWeather : realmWeathers) {
+                if (realmWeather.getSampleId() == weather.getSampleId()) {
                     isExisted = true;
                 }
             }
             if (!isExisted) {
                 Realm.getDefaultInstance().executeTransaction(realm -> {
-                    realm.copyToRealm(sample);
+                    realm.copyToRealm(weather);
                 });
             }
         }
     }
 
-    public List<Sample> getAllSamples() {
-        RealmResults<Sample> iterableSamples = Realm.getDefaultInstance()
-                .where(Sample.class).findAll();
-        return Realm.getDefaultInstance().copyFromRealm(iterableSamples);
+    public List<Weather> getAllWeathers() {
+        RealmResults<Weather> iterableWeathers = Realm.getDefaultInstance()
+                .where(Weather.class).findAll();
+        return Realm.getDefaultInstance().copyFromRealm(iterableWeathers);
     }
 }

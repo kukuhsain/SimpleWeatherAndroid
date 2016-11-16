@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.kukuhsain.simple.weather.R;
 import com.kukuhsain.simple.weather.model.local.PreferencesHelper;
-import com.kukuhsain.simple.weather.model.pojo.Sample;
+import com.kukuhsain.simple.weather.model.pojo.Weather;
 import com.kukuhsain.simple.weather.view.adapter.WeatherAdapter;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class WeatherListActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
-        actionBar.setTitle("Sample Activity");
+        actionBar.setTitle("Weather Activity");
 
         layoutManager = new LinearLayoutManager(this);
         rvSamples.setLayoutManager(layoutManager);
@@ -58,17 +58,17 @@ public class WeatherListActivity extends AppCompatActivity {
         rvSamples.setAdapter(adapter);
     }
 
-    private List<Sample> getDummySamples() {
-        List<Sample> samples = new ArrayList<>();
+    private List<Weather> getDummySamples() {
+        List<Weather> weathers = new ArrayList<>();
         int total = 10;
         for (int i=0; i<total; i++) {
-            samples.add(new Sample(i, "Sample title "+i, "Sample description, Lorem ipsum "+i));
+            weathers.add(new Weather(i, "Weather title "+i, "Weather description, Lorem ipsum "+i));
         }
-        return samples;
+        return weathers;
     }
 
-    public void onItemClicked(Sample sample) {
-        Toast.makeText(this, sample.getName(), Toast.LENGTH_SHORT).show();
+    public void onItemClicked(Weather weather) {
+        Toast.makeText(this, weather.getName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

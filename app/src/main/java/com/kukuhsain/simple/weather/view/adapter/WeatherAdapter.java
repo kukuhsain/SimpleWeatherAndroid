@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kukuhsain.simple.weather.R;
-import com.kukuhsain.simple.weather.model.pojo.Sample;
+import com.kukuhsain.simple.weather.model.pojo.Weather;
 import com.kukuhsain.simple.weather.view.WeatherListActivity;
 
 import java.util.List;
@@ -22,10 +22,10 @@ import butterknife.ButterKnife;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
     private Context context;
-    private List<Sample> samples;
+    private List<Weather> weathers;
 
-    public WeatherAdapter(List<Sample> samples) {
-        this.samples = samples;
+    public WeatherAdapter(List<Weather> weathers) {
+        this.weathers = weathers;
     }
 
     @Override
@@ -38,12 +38,12 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bind(context, samples.get(position));
+        holder.bind(context, weathers.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return samples.size();
+        return weathers.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -55,11 +55,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(Context context, Sample sample) {
-            tvName.setText(sample.getName());
-            tvDescription.setText(sample.getDescription());
+        public void bind(Context context, Weather weather) {
+            tvName.setText(weather.getName());
+            tvDescription.setText(weather.getDescription());
             itemView.setOnClickListener(view -> {
-                ((WeatherListActivity) context).onItemClicked(sample);
+                ((WeatherListActivity) context).onItemClicked(weather);
             });
         }
     }
