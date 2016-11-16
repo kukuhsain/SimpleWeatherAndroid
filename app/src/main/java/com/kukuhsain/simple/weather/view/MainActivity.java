@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage("Please insert your current location")
                 .setView(R.layout.dialog_insert_city)
                 .setPositiveButton("OK", (dialogInterface, i) -> {
+                    startActivity(new Intent(this, WeatherDetailActivity.class));
                     dialogInterface.dismiss();
                 })
                 .show();

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weather"
+                android:textSize="22sp"
+                android:textColor="@color/textWhitePrimary"/>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="City of"
+                android:textSize="24sp"
+                android:textColor="@android:color/darker_gray"/>
+
+            <TextView
+                android:id="@+id/detail_city_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="London, GB"
+                android:textSize="40sp"
+                android:textColor="@android:color/background_dark"/>
+
+            <!-- Weather icon, main, and desc -->
+
+            <ImageView
+                android:id="@+id/detail_icon"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/detail_weather_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rain"
+                android:textSize="32sp"
+                android:layout_marginTop="16dp"
+                android:textColor="@android:color/background_dark"/>
+
+            <TextView
+                android:id="@+id/detail_weather_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Light Rain"
+                android:textSize="24sp"
+                android:textColor="@android:color/darker_gray"/>
+
+            <!-- Wind -->
+            <TextView
+                android:id="@+id/detail_wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="52 m/sec"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:textColor="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wind speed"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"/>
+
+            <!-- Cloudiness -->
+            <TextView
+                android:id="@+id/detail_cloudiness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 %"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:textColor="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cloudiness"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"/>
+
+            <!-- Pressure -->
+            <TextView
+                android:id="@+id/detail_pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.2 hPa"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:textColor="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pressure"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"/>
+
+            <!-- Humidity -->
+            <TextView
+                android:id="@+id/detail_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 %"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:textColor="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Humidity"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"/>
+
+            <!-- Min Max Temp -->
+            <TextView
+                android:id="@+id/detail_range_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12C - 20C"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:textColor="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Range of temperature"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"/>
+
+            <!-- Temperature -->
+            <TextView
+                android:id="@+id/detail_time_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12C, 23C, 13C, 14C"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:textColor="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Morning, Day, Evening, Night Temperature"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"/>
+
+            <!-- Geo coords -->
+            <TextView
+                android:id="@+id/detail_coord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[-0.09, 51.51]"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:textColor="@android:color/background_dark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Geo coords [ lat, lon ]"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>
