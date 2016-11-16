@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btn_insert_city)
     public void insertCity() {
         new AlertDialog.Builder(this)
+                .setTitle("Insert City")
                 .setMessage("Please insert your current location")
+                .setView(R.layout.dialog_insert_city)
                 .setPositiveButton("OK", (dialogInterface, i) -> {
                     dialogInterface.dismiss();
                 })
