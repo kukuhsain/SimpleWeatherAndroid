@@ -1,6 +1,6 @@
-package com.kukuhsain.simple.boilerplate.model.local;
+package com.kukuhsain.simple.weather.model.local;
 
-import com.kukuhsain.simple.boilerplate.model.pojo.Sample;
+import com.kukuhsain.simple.weather.model.pojo.Sample;
 
 import java.util.List;
 

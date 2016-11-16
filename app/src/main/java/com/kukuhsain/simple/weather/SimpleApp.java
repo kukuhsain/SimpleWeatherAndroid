@@ -1,4 +1,4 @@
-package com.kukuhsain.simple.boilerplate;
+package com.kukuhsain.simple.weather;
 
 import android.app.Application;
 

@@ -1,9 +1,9 @@
-package com.kukuhsain.simple.boilerplate.model.local;
+package com.kukuhsain.simple.weather.model.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.kukuhsain.simple.boilerplate.SimpleApp;
+import com.kukuhsain.simple.weather.SimpleApp;
 
 /**
  * Created by kukuh on 20/10/16.

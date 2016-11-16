@@ -1,6 +1,6 @@
-package com.kukuhsain.simple.boilerplate.model.remote;
+package com.kukuhsain.simple.weather.model.remote;
 
-import com.kukuhsain.simple.boilerplate.model.local.PreferencesHelper;
+import com.kukuhsain.simple.weather.model.local.PreferencesHelper;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

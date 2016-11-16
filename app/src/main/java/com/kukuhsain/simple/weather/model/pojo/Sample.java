@@ -1,4 +1,4 @@
-package com.kukuhsain.simple.boilerplate.model.pojo;
+package com.kukuhsain.simple.weather.model.pojo;
 
 import io.realm.RealmObject;
 

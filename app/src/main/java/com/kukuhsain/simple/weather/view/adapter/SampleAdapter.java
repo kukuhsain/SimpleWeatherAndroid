@@ -1,4 +1,4 @@
-package com.kukuhsain.simple.boilerplate.view.adapter;
+package com.kukuhsain.simple.weather.view.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.kukuhsain.simple.boilerplate.R;
-import com.kukuhsain.simple.boilerplate.model.pojo.Sample;
-import com.kukuhsain.simple.boilerplate.view.SampleActivity;
+import com.kukuhsain.simple.weather.R;
+import com.kukuhsain.simple.weather.model.pojo.Sample;
+import com.kukuhsain.simple.weather.view.SampleActivity;
 
 import java.util.List;
 
