@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_current_location)
     public void useCurrentLocation() {
-        startActivity(new Intent(this, WeatherListActivity.class));
+        startActivity(new Intent(this, WeatherDetailActivity.class));
     }
 
     private void showLoading() {
