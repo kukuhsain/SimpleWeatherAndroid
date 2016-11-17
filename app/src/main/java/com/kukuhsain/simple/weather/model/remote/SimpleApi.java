@@ -1,7 +1,7 @@
 package com.kukuhsain.simple.weather.model.remote;
 
 import com.kukuhsain.simple.weather.model.local.PreferencesHelper;
-import com.kukuhsain.simple.weather.model.pojo.ForecastResult;
+import com.kukuhsain.simple.weather.model.pojo.Weather;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -39,16 +39,14 @@ public class SimpleApi {
         return INSTANCE;
     }
 
-    public Observable<ForecastResult> getForecastByCity(String city) {
-        return api.getForecastByCity(city, "json", "metric", "16", OPENWEATHER_APP_ID);
+    public Observable<Weather> getWeatherByCity(String city) {
+        return api.getWeatherByCity(city, "metric", OPENWEATHER_APP_ID);
     }
 
     private interface ApiEndpoint {
-        @GET("/data/2.5/forecast/daily")
-        Observable<ForecastResult> getForecastByCity(@Query("q") String city,
-                                                     @Query("mode") String mode,
-                                                     @Query("units") String units,
-                                                     @Query("cnt") String cnt,
-                                                     @Query("appid") String appId);
+        @GET("/data/2.5/weather")
+        Observable<Weather> getWeatherByCity(@Query("q") String city,
+                                              @Query("units") String units,
+                                              @Query("appid") String appId);
     }
 }

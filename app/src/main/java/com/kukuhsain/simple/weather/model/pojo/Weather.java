@@ -1,35 +1,46 @@
 package com.kukuhsain.simple.weather.model.pojo;
 
+import io.realm.RealmObject;
+
 /**
  * Created by kukuh on 14/11/16.
  */
 
-public class Weather {
-    private int id;
-    private String main;
+public class Weather extends RealmObject {
+    private long sampleId;
+    private String name;
     private String description;
-    private String icon;
 
-    public Weather(int id, String main, String description, String icon) {
-        this.id = id;
-        this.main = main;
+    public Weather() {
+    }
+
+    public Weather(long sampleId, String name, String description) {
+        this.sampleId = sampleId;
+        this.name = name;
         this.description = description;
-        this.icon = icon;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getMain() {
-        return main;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String getIcon() {
-        return icon;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getSampleId() {
+        return sampleId;
+    }
+
+    public void setSampleId(long sampleId) {
+        this.sampleId = sampleId;
     }
 }
