@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.kukuhsain.simple.weather.R;
 import com.kukuhsain.simple.weather.model.remote.SimpleApi;
 
@@ -58,14 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 .getWeatherByCity(city)
                 .subscribeOn(Schedulers.io())
                 .subscribe(weather -> {
-                    Timber.d("success...");
-                    Timber.d(weather.getName());
-                    Timber.d(weather.getCountryId());
+                    Intent intent = new Intent(this, WeatherDetailActivity.class);
+                    intent.putExtra("weather", (new Gson()).toJson(weather));
+                    startActivity(intent);
                     runOnUiThread(() -> {
                         dismissLoading();
                         Toast.makeText(this, "success...", Toast.LENGTH_SHORT).show();
                     });
-                    startActivity(new Intent(this, WeatherDetailActivity.class));
                 }, throwable -> {
                     Timber.d("error...");
                     throwable.printStackTrace();
