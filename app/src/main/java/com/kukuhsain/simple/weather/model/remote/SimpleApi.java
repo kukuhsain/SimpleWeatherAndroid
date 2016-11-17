@@ -1,5 +1,6 @@
 package com.kukuhsain.simple.weather.model.remote;
 
+import com.google.gson.JsonObject;
 import com.kukuhsain.simple.weather.model.local.PreferencesHelper;
 import com.kukuhsain.simple.weather.model.pojo.Weather;
 
@@ -40,13 +41,37 @@ public class SimpleApi {
     }
 
     public Observable<Weather> getWeatherByCity(String city) {
-        return api.getWeatherByCity(city, "metric", OPENWEATHER_APP_ID);
+        return api.getWeatherByCity(city, "metric", OPENWEATHER_APP_ID).map(jsonObject -> {
+            Weather weather = new Weather();
+            JsonObject weatherObject = jsonObject.get("weather").getAsJsonArray()
+                    .get(0).getAsJsonObject();
+            JsonObject weatherWind = jsonObject.get("wind").getAsJsonObject();
+            JsonObject weatherSys = jsonObject.get("sys").getAsJsonObject();
+            JsonObject weatherMain = jsonObject.get("main").getAsJsonObject();
+            JsonObject weatherCoord = jsonObject.get("coord").getAsJsonObject();
+
+            weather.setName(weatherObject.get("main").getAsString());
+            weather.setDescription(weatherObject.get("description").getAsString());
+            weather.setIcon(weatherObject.get("icon").getAsString());
+
+            weather.setCity(jsonObject.get("name").getAsString());
+            weather.setCountryId(weatherSys.get("country").getAsString());
+            weather.setLatitude(weatherCoord.get("lat").getAsDouble());
+            weather.setLongitude(weatherCoord.get("lon").getAsDouble());
+
+            weather.setHumidity(weatherMain.get("humidity").getAsFloat());
+            weather.setPressure(weatherMain.get("pressure").getAsFloat());
+            weather.setCloudiness(jsonObject.get("clouds").getAsJsonObject()
+                    .get("all").getAsFloat());
+
+            return weather;
+        });
     }
 
     private interface ApiEndpoint {
         @GET("/data/2.5/weather")
-        Observable<Weather> getWeatherByCity(@Query("q") String city,
-                                              @Query("units") String units,
-                                              @Query("appid") String appId);
+        Observable<JsonObject> getWeatherByCity(@Query("q") String city,
+                                                @Query("units") String units,
+                                                @Query("appid") String appId);
     }
 }
