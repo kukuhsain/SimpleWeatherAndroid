@@ -7,9 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.kukuhsain.simple.weather.R;
 import com.kukuhsain.simple.weather.model.pojo.Weather;
+import com.kukuhsain.simple.weather.model.remote.SimpleApi;
 
 import java.text.SimpleDateFormat;
 
@@ -69,6 +71,10 @@ public class WeatherDetailActivity extends AppCompatActivity {
             tvSunrise.setText(new SimpleDateFormat("HH:mm").format(weather.getSunriseDate()));
             tvSunset.setText(new SimpleDateFormat("HH:mm").format(weather.getSunsetDate()));
             tvCoord.setText("[ "+weather.getLatitude()+", "+weather.getLongitude()+" ]");
+
+            Glide.with(this)
+                    .load(SimpleApi.BASE_URL+"/img/w/"+weather.getIcon()+".png")
+                    .into(ivIcon);
         }
     }
 }
