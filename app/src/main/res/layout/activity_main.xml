@@ -22,6 +22,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:gravity="center_horizontal"
                 android:text="Select the method that will be used to get weather forecast"
                 android:textSize="16sp"/>
@@ -30,13 +31,19 @@
                 android:id="@+id/btn_insert_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Insert City"/>
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimary"
+                android:text="Insert City"
+                android:textColor="@color/textWhitePrimary"/>
 
             <Button
                 android:id="@+id/btn_current_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Use Current Location"/>
+                android:layout_margin="8dp"
+                android:background="@color/colorPrimary"
+                android:text="Use Current Location"
+                android:textColor="@color/textWhitePrimary"/>
 
         </LinearLayout>
 
