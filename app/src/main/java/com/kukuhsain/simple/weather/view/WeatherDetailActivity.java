@@ -56,17 +56,18 @@ public class WeatherDetailActivity extends AppCompatActivity {
         super.onStart();
         if (weather != null) {
             tvLocation.setText(weather.getCity()+", "+weather.getCountryId());
+            tvTemperature.setText(weather.getTemperature()+(char)0x00B0+"C");
             tvName.setText(weather.getName());
             tvDescription.setText(weather.getDescription());
-            tvDate.setText(new SimpleDateFormat("yyyy.MM.dd HH:mm").format(
+            tvDate.setText("get at "+new SimpleDateFormat("yyyy.MM.dd HH:mm").format(
                     weather.getRequestDate()
             ));
-            tvWind.setText("slowly...");
+            tvWind.setText("Speed "+weather.getWindSpeed()+" m/s with direction to "+weather.getWindDegree()+" degree");
             tvCloudiness.setText(weather.getCloudiness()+" %");
             tvPressure.setText(weather.getPressure()+" hPa");
             tvHumidity.setText(weather.getHumidity()+" %");
-            tvSunrise.setText("05.18");
-            tvSunset.setText("17.31");
+            tvSunrise.setText(new SimpleDateFormat("HH:mm").format(weather.getSunriseDate()));
+            tvSunset.setText(new SimpleDateFormat("HH:mm").format(weather.getSunsetDate()));
             tvCoord.setText("[ "+weather.getLatitude()+", "+weather.getLongitude()+" ]");
         }
     }
