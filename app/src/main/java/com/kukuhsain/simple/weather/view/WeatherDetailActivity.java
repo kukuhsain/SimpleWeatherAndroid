@@ -11,6 +11,8 @@ import com.google.gson.Gson;
 import com.kukuhsain.simple.weather.R;
 import com.kukuhsain.simple.weather.model.pojo.Weather;
 
+import java.text.SimpleDateFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -56,7 +58,9 @@ public class WeatherDetailActivity extends AppCompatActivity {
             tvLocation.setText(weather.getCity()+", "+weather.getCountryId());
             tvName.setText(weather.getName());
             tvDescription.setText(weather.getDescription());
-            tvDate.setText("get at a date...");
+            tvDate.setText(new SimpleDateFormat("yyyy.MM.dd HH:mm").format(
+                    weather.getRequestDate()
+            ));
             tvWind.setText("slowly...");
             tvCloudiness.setText(weather.getCloudiness()+" %");
             tvPressure.setText(weather.getPressure()+" hPa");

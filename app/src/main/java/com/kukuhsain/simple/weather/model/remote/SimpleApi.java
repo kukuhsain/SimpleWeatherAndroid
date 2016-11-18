@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import com.kukuhsain.simple.weather.model.local.PreferencesHelper;
 import com.kukuhsain.simple.weather.model.pojo.Weather;
 
+import java.util.Date;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -54,15 +56,22 @@ public class SimpleApi {
             weather.setDescription(weatherObject.get("description").getAsString());
             weather.setIcon(weatherObject.get("icon").getAsString());
 
+            weather.setRequestDate(new Date(jsonObject.get("dt").getAsLong()*1000));
+            weather.setSunriseDate(new Date(weatherSys.get("sunrise").getAsLong()*1000));
+            weather.setSunsetDate(new Date(weatherSys.get("sunset").getAsLong()*1000));
+
             weather.setCity(jsonObject.get("name").getAsString());
             weather.setCountryId(weatherSys.get("country").getAsString());
             weather.setLatitude(weatherCoord.get("lat").getAsDouble());
             weather.setLongitude(weatherCoord.get("lon").getAsDouble());
 
+            weather.setTemperature(weatherMain.get("temp").getAsFloat());
             weather.setHumidity(weatherMain.get("humidity").getAsFloat());
             weather.setPressure(weatherMain.get("pressure").getAsFloat());
             weather.setCloudiness(jsonObject.get("clouds").getAsJsonObject()
                     .get("all").getAsFloat());
+            weather.setWindSpeed(weatherWind.get("speed").getAsFloat());
+            weather.setWindDegree(weatherWind.get("deg").getAsFloat());
 
             return weather;
         });
