@@ -36,11 +36,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="City of"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:textColor="@color/textDarkSecondary"/>
 
                 <TextView
-                    android:id="@+id/detail_city_country"
+                    android:id="@+id/tv_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="London, GB"
@@ -49,14 +49,30 @@
 
                 <!-- Weather icon, main, and desc -->
 
-                <ImageView
-                    android:id="@+id/detail_icon"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="16dp"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <ImageView
+                        android:id="@+id/iv_icon"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:text="9.3 C"
+                        android:textSize="56sp"/>
+
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/detail_weather_main"
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rain"
@@ -65,12 +81,21 @@
                     android:textColor="@color/textDarkPrimary"/>
 
                 <TextView
-                    android:id="@+id/detail_weather_desc"
+                    android:id="@+id/tv_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Light Rain"
                     android:textSize="24sp"
                     android:textColor="@color/textDarkSecondary"/>
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="get at date"
+                    android:textSize="16sp"
+                    android:textColor="@color/textDarkHint"/>
 
             </LinearLayout>
 
@@ -90,12 +115,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Wind speed"
+                    android:text="Wind"
                     android:textSize="12sp"
                     android:textColor="@color/textDarkSecondary"/>
 
                 <TextView
-                    android:id="@+id/detail_wind"
+                    android:id="@+id/tv_wind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="52 m/sec"
@@ -125,7 +150,7 @@
                     android:textColor="@color/textDarkSecondary"/>
 
                 <TextView
-                    android:id="@+id/detail_cloudiness"
+                    android:id="@+id/tv_cloudiness"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2 %"
@@ -155,7 +180,7 @@
                     android:textColor="@color/textDarkSecondary"/>
 
                 <TextView
-                    android:id="@+id/detail_pressure"
+                    android:id="@+id/tv_pressure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.2 hPa"
@@ -184,7 +209,7 @@
                     android:textColor="@color/textDarkSecondary"/>
 
                 <TextView
-                    android:id="@+id/detail_humidity"
+                    android:id="@+id/tv_humidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2 %"
@@ -193,7 +218,7 @@
 
             </LinearLayout>
 
-            <!-- Min Max Temp -->
+            <!-- Sunrise -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -208,21 +233,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Range of temperature"
+                    android:text="Sunrise"
                     android:textSize="12sp"
                     android:textColor="@color/textDarkSecondary"/>
 
                 <TextView
-                    android:id="@+id/detail_range_temp"
+                    android:id="@+id/tv_sunrise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12C - 20C"
+                    android:text="05.17"
                     android:textSize="16sp"
                     android:textColor="@color/textDarkPrimary"/>
 
             </LinearLayout>
 
-            <!-- Temperature -->
+            <!-- Sunset -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -237,15 +262,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Morning, Day, Evening, Night Temperature"
+                    android:text="Sunset"
                     android:textSize="12sp"
                     android:textColor="@color/textDarkSecondary"/>
 
                 <TextView
-                    android:id="@+id/detail_time_temp"
+                    android:id="@+id/tv_sunset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12C, 23C, 13C, 14C"
+                    android:text="17.30"
                     android:textSize="16sp"
                     android:textColor="@color/textDarkPrimary"/>
 
@@ -271,7 +296,7 @@
                     android:textColor="@color/textDarkSecondary"/>
 
                 <TextView
-                    android:id="@+id/detail_coord"
+                    android:id="@+id/tv_coord"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="[-0.09, 51.51]"
