@@ -42,38 +42,48 @@ public class SimpleApi {
         return INSTANCE;
     }
 
+    private Weather convertJsonObjectToWeather(JsonObject jsonObject) {
+        Weather weather = new Weather();
+        JsonObject weatherObject = jsonObject.get("weather").getAsJsonArray()
+                .get(0).getAsJsonObject();
+        JsonObject weatherWind = jsonObject.get("wind").getAsJsonObject();
+        JsonObject weatherSys = jsonObject.get("sys").getAsJsonObject();
+        JsonObject weatherMain = jsonObject.get("main").getAsJsonObject();
+        JsonObject weatherCoord = jsonObject.get("coord").getAsJsonObject();
+
+        weather.setName(weatherObject.get("main").getAsString());
+        weather.setDescription(weatherObject.get("description").getAsString());
+        weather.setIcon(weatherObject.get("icon").getAsString());
+
+        weather.setRequestDate(new Date(jsonObject.get("dt").getAsLong()*1000));
+        weather.setSunriseDate(new Date(weatherSys.get("sunrise").getAsLong()*1000));
+        weather.setSunsetDate(new Date(weatherSys.get("sunset").getAsLong()*1000));
+
+        weather.setCity(jsonObject.get("name").getAsString());
+        weather.setCountryId(weatherSys.get("country").getAsString());
+        weather.setLatitude(weatherCoord.get("lat").getAsDouble());
+        weather.setLongitude(weatherCoord.get("lon").getAsDouble());
+
+        weather.setTemperature(weatherMain.get("temp").getAsFloat());
+        weather.setHumidity(weatherMain.get("humidity").getAsFloat());
+        weather.setPressure(weatherMain.get("pressure").getAsFloat());
+        weather.setCloudiness(jsonObject.get("clouds").getAsJsonObject()
+                .get("all").getAsFloat());
+        weather.setWindSpeed(weatherWind.get("speed").getAsFloat());
+        weather.setWindDegree(weatherWind.get("deg").getAsFloat());
+
+        return weather;
+    }
+
     public Observable<Weather> getWeatherByCity(String city) {
         return api.getWeatherByCity(city, "metric", OPENWEATHER_APP_ID).map(jsonObject -> {
-            Weather weather = new Weather();
-            JsonObject weatherObject = jsonObject.get("weather").getAsJsonArray()
-                    .get(0).getAsJsonObject();
-            JsonObject weatherWind = jsonObject.get("wind").getAsJsonObject();
-            JsonObject weatherSys = jsonObject.get("sys").getAsJsonObject();
-            JsonObject weatherMain = jsonObject.get("main").getAsJsonObject();
-            JsonObject weatherCoord = jsonObject.get("coord").getAsJsonObject();
+            return convertJsonObjectToWeather(jsonObject);
+        });
+    }
 
-            weather.setName(weatherObject.get("main").getAsString());
-            weather.setDescription(weatherObject.get("description").getAsString());
-            weather.setIcon(weatherObject.get("icon").getAsString());
-
-            weather.setRequestDate(new Date(jsonObject.get("dt").getAsLong()*1000));
-            weather.setSunriseDate(new Date(weatherSys.get("sunrise").getAsLong()*1000));
-            weather.setSunsetDate(new Date(weatherSys.get("sunset").getAsLong()*1000));
-
-            weather.setCity(jsonObject.get("name").getAsString());
-            weather.setCountryId(weatherSys.get("country").getAsString());
-            weather.setLatitude(weatherCoord.get("lat").getAsDouble());
-            weather.setLongitude(weatherCoord.get("lon").getAsDouble());
-
-            weather.setTemperature(weatherMain.get("temp").getAsFloat());
-            weather.setHumidity(weatherMain.get("humidity").getAsFloat());
-            weather.setPressure(weatherMain.get("pressure").getAsFloat());
-            weather.setCloudiness(jsonObject.get("clouds").getAsJsonObject()
-                    .get("all").getAsFloat());
-            weather.setWindSpeed(weatherWind.get("speed").getAsFloat());
-            weather.setWindDegree(weatherWind.get("deg").getAsFloat());
-
-            return weather;
+    public Observable<Weather> getWeatherByLatLon(double latitude, double longitude) {
+        return api.getWeatherByLatLon(latitude, longitude, "metric", OPENWEATHER_APP_ID).map(jsonObject -> {
+            return convertJsonObjectToWeather(jsonObject);
         });
     }
 
@@ -82,5 +92,11 @@ public class SimpleApi {
         Observable<JsonObject> getWeatherByCity(@Query("q") String city,
                                                 @Query("units") String units,
                                                 @Query("appid") String appId);
+
+        @GET("/data/2.5/weather")
+        Observable<JsonObject> getWeatherByLatLon(@Query("lat") double latitude,
+                                                  @Query("lon") double longitude,
+                                                  @Query("units") String units,
+                                                  @Query("appid") String appId);
     }
 }
