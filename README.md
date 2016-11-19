@@ -3,6 +3,8 @@
 This is a simple Android project for forecasting weather. The app provides 2 options to do weather forecast, 
 by inserting city name, or by using user's current location. 
 
+[](screenshot_main.png)
+
 ## Libraries
 
 In this project, I use some popular libraries to reduce line of codes, improve readability, improve code quality,
