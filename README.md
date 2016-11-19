@@ -6,6 +6,8 @@ by inserting city name, or by using user's current location.
 <img src="screenshot_main.png" width="350">
 <img src="screenshot_detail.png" width="350">
 
+[](screenshot_main.png)
+
 ## Libraries
 
 In this project, I use some popular libraries to reduce line of codes, improve readability, improve code quality,
