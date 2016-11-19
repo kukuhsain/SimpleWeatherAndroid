@@ -1,7 +1,10 @@
 # Simple Weather Android App
 
 This is a simple Android project for forecasting weather. The app provides 2 options to do weather forecast, 
-by inserting city name, or by using user's current location. 
+by inserting city name, or by using user's current location.
+ 
+<img src="screenshot_main.png" width="350">
+<img src="screenshot_detail.png" width="350">
 
 ## Libraries
 
@@ -22,3 +25,8 @@ and more advantages that the libraries have offered. Here are some of the librar
 - JDK 8
 - Android SDK
 - Android N (API 25)
+
+### Footnote
+
+This project cloned [SimpleBoilerplateAndroid](https://github.com/kukuhsain/SimpleBoilerplateAndroid) 
+so you may find some unused code there.

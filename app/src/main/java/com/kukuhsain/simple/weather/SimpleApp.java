@@ -2,8 +2,6 @@ package com.kukuhsain.simple.weather;
 
 import android.app.Application;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import timber.log.Timber;
 
 /**
@@ -21,13 +19,6 @@ public class SimpleApp extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
-
-        Realm.init(this);
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(realmConfiguration);
-
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
