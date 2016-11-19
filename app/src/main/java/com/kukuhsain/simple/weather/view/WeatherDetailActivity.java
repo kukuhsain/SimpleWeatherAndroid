@@ -58,7 +58,7 @@ public class WeatherDetailActivity extends AppCompatActivity {
         super.onStart();
         if (weather != null) {
             tvLocation.setText(weather.getCity()+", "+weather.getCountryId());
-            tvTemperature.setText(weather.getTemperature()+(char)0x00B0+"C");
+            tvTemperature.setText(""+weather.getTemperature()+(char)0x00B0+"C");
             tvName.setText(weather.getName());
             tvDescription.setText(weather.getDescription());
             tvDate.setText("get at "+new SimpleDateFormat("yyyy.MM.dd HH:mm").format(

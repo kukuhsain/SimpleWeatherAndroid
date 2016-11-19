@@ -199,10 +199,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     }
 
-    private void onLocationRequestSucceed() {
-        startActivity(new Intent(this, WeatherDetailActivity.class));
-    }
-
     private void updateLocation() {
         locationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
