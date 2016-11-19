@@ -24,10 +24,14 @@ import com.google.gson.Gson;
 import com.kukuhsain.simple.weather.R;
 import com.kukuhsain.simple.weather.model.remote.SimpleApi;
 
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
+import retrofit2.adapter.rxjava.HttpException;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -109,14 +113,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     startActivity(intent);
                     runOnUiThread(() -> {
                         dismissLoading();
-                        Toast.makeText(this, "success...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Success...", Toast.LENGTH_SHORT).show();
                     });
                 }, throwable -> {
                     Timber.d("error...");
                     throwable.printStackTrace();
                     runOnUiThread(() -> {
                         dismissLoading();
-                        Toast.makeText(this, "Error...", Toast.LENGTH_SHORT).show();
+                        onError(throwable);
                     });
                 });
     }
@@ -132,14 +136,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     startActivity(intent);
                     runOnUiThread(() -> {
                         dismissLoading();
-                        Toast.makeText(this, "success...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Success...", Toast.LENGTH_SHORT).show();
                     });
                 }, throwable -> {
                     Timber.d("error...");
                     throwable.printStackTrace();
                     runOnUiThread(() -> {
                         dismissLoading();
-                        Toast.makeText(this, "Error...", Toast.LENGTH_SHORT).show();
+                        onError(throwable);
                     });
                 });
     }
@@ -213,5 +217,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     public void onLocationChanged(Location location) {
         currentLocation = location;
+    }
+
+    private void onError(Throwable throwable) {
+        if (throwable instanceof SocketTimeoutException) {
+            Toast.makeText(this, "Your request takes too long time, please try again", Toast.LENGTH_SHORT).show();
+        } else if (throwable instanceof UnknownHostException) {
+            Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+        } else if (throwable instanceof HttpException) {
+            Toast.makeText(this, "Invalid city, use another city name", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Error, please try again", Toast.LENGTH_SHORT).show();
+        }
     }
 }
