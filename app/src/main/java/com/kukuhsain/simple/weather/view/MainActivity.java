@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 .setMessage("Please insert your current location")
                 .setView(view)
                 .setPositiveButton("OK", (dialogInterface, i) -> {
-                    requestWeatherForecast(etCity.getText().toString());
+                    requestWeatherForecastByCity(etCity.getText().toString());
                     dialogInterface.dismiss();
                 })
                 .show();
@@ -92,16 +92,39 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @OnClick(R.id.btn_current_location)
     public void useCurrentLocation() {
         if (currentLocation != null) {
-            startActivity(new Intent(this, WeatherDetailActivity.class));
+            requestWeatherByLatLon(currentLocation.getLatitude(), currentLocation.getLongitude());
         } else {
             Toast.makeText(this, "Please enable accessing location from your setting", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void requestWeatherForecast(String city) {
+    private void requestWeatherForecastByCity(String city) {
         showLoading();
         SimpleApi.getInstance()
                 .getWeatherByCity(city)
+                .subscribeOn(Schedulers.io())
+                .subscribe(weather -> {
+                    Intent intent = new Intent(this, WeatherDetailActivity.class);
+                    intent.putExtra("weather", (new Gson()).toJson(weather));
+                    startActivity(intent);
+                    runOnUiThread(() -> {
+                        dismissLoading();
+                        Toast.makeText(this, "success...", Toast.LENGTH_SHORT).show();
+                    });
+                }, throwable -> {
+                    Timber.d("error...");
+                    throwable.printStackTrace();
+                    runOnUiThread(() -> {
+                        dismissLoading();
+                        Toast.makeText(this, "Error...", Toast.LENGTH_SHORT).show();
+                    });
+                });
+    }
+
+    private void requestWeatherByLatLon(double latitude, double longitude) {
+        showLoading();
+        SimpleApi.getInstance()
+                .getWeatherByLatLon(latitude, longitude)
                 .subscribeOn(Schedulers.io())
                 .subscribe(weather -> {
                     Intent intent = new Intent(this, WeatherDetailActivity.class);
