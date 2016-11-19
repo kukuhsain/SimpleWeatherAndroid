@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private LocationRequest locationRequest;
 
     private long UPDATE_INTERVAL = 10000;
-    private long FASTEST_INTERVAL = 2000;
+    private long FASTEST_INTERVAL = 1000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         if (currentLocation != null) {
             requestWeatherByLatLon(currentLocation.getLatitude(), currentLocation.getLongitude());
         } else {
+            updateLocation();
             Toast.makeText(this, "Please enable accessing location from your setting", Toast.LENGTH_SHORT).show();
         }
     }
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @AfterPermissionGranted(RC_LOCATION)
     private void getUserLocation() {
         if (EasyPermissions.hasPermissions(this, perms)) {
-            if (currentLocation != null) {
+            if (currentLocation == null) {
                 updateLocation();
             }
         } else {
@@ -184,13 +185,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        currentLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        if (currentLocation == null) {
-            updateLocation();
-        }
+        updateLocation();
     }
 
     @Override
@@ -204,14 +199,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     private void updateLocation() {
-        locationRequest = LocationRequest.create()
-                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(UPDATE_INTERVAL)
-                .setFastestInterval(FASTEST_INTERVAL);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
+        currentLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        if (currentLocation == null) {
+            locationRequest = LocationRequest.create()
+                    .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
+                    .setInterval(UPDATE_INTERVAL)
+                    .setFastestInterval(FASTEST_INTERVAL);
+            LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
+        }
     }
 
     @Override
