@@ -185,20 +185,23 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
+        Timber.d("connected...");
         updateLocation();
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        Timber.d("connection suspended...");
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        Timber.d("connection failed...");
+        Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
     }
 
     private void updateLocation() {
+        Timber.d("update location...");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
